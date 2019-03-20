@@ -15,7 +15,7 @@ apt-get install -y nodejs
 
 
 ## Install Python3.6
-echo "deb http://ftp.de.debian.org/debian testing main" >> /etc/apt/sources.list
+echo "deb http://ftp.debian.org/debian testing main" >> /etc/apt/sources.list
 echo 'APT::Default-Release "stable";' | tee -a /etc/apt/apt.conf.d/00local
 apt-get update
 apt-get -t testing install  --yes --force-yes python3.6 python3-pip libssl-dev
