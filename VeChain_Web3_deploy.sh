@@ -14,15 +14,20 @@ curl -sL https://deb.nodesource.com/setup_10.x | bash -
 apt-get install -y nodejs
 
 
-## Install Python3.6
-echo "deb http://ftp.debian.org/debian testing main" >> /etc/apt/sources.list
-echo 'APT::Default-Release "stable";' | tee -a /etc/apt/apt.conf.d/00local
-apt-get update
-apt-get -t testing install  --yes --force-yes python3.6 python3-pip libssl-dev
-update-alternatives --install /usr/bin/python python /usr/bin/python3.6 50
+## Build and Install Python3.7
+apt-get install -y checkinstall
+##The following dependencies are sourced from: https://bugs.python.org/issue31652 
+apt-get install -y libsqlite3-dev sqlite3 bzip2 libbz2-dev zlib1g-dev libssl-dev openssl libgdbm-dev liblzma-dev libreadline-dev libncursesw5-dev libffi-dev uuid-dev
+cd /usr/src
+wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz
+tar xzf Python-3.7.2.tgz
+cd Python-3.7.2
+./configure --enable-optimizations
+make altinstall
+
 
 ### Install Web3-Gear
-pip3 install web3-gear
+python3.7 -m pip install web3-gear
 
 ### Create StartUp-Scrip
 echo "########################"
